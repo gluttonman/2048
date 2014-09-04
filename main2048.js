@@ -80,41 +80,32 @@ function generateOneNumber() {
 
 	return true;
 }
-$(document).keydown(function(event) {
-	switch (event.keyCode) {
-		case 37:
 
-			if (!isgameover()) {
+	$(document).ready(function(){
+
+		$("#grid-container").height($(window).height()*0.5).swipeLeft(function(){
+			if(!isgameover()){
 				moveLeft();
 				generateOneNumber();
-				
 			}
-			break;
-		case 38:
-			if (!isgameover()) {
+		}
+		).swipeRight(function(){
+			if(!isgameover()){
+				moveRight();
+				generateOneNumber();
+			}
+		}).swipeUp(function(){
+			if(!isgameover()){
 				moveUp();
 				generateOneNumber();
 			}
-			break;
-		case 39:
-			if (!isgameover()) {
-				moveRight();
-				generateOneNumber();
-				
-			}
-			break;
-		case 40:
-			if (!isgameover()) {
+		}).swipeDown(function(){
+			if(!isgameover()){
 				moveDown();
 				generateOneNumber();
 			}
-			break;
-		default:
-			break;
-	}
-
-});
-
+		});
+	});
 function isgameover() {
 	if (gameOver()) {
 		alert("Game is Over!");
